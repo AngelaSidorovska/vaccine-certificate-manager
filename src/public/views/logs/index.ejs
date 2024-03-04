@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>covid19_vaccination_certificate</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&family=Merriweather&family=Roboto+Slab:wght@200&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<%- include('../partials/notifications') %>
+<%- include('../partials/navbar') %>
+
+<div id="patients-list-content">
+    <div class="heading-container">
+        <h1 class="table-heading">Patient Request Logs</h1>
+    </div>
+    <div class="tbl-header">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Request Date</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="tbl-content">
+        <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+            <% if (logs && logs.length > 0) { %>
+                <% logs.forEach(log => {%>
+                    <tr>
+                        <td><%= log.name %></td>
+                        <td><%= log.surname %></td>
+                        <td><%= log.request_date %></td>
+                    </tr>
+                <% }) %>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+    <% if (pages > 0) { %>
+        <ul class="pagination text-center">
+            <% if (currentPage  == 1) { %>
+                <li class="disabled"><a>First</a></li>
+            <% } else { %>
+                <li><a href="/logs?currentPage=1&pageSize=10">First</a></li>
+            <% } %>
+            <% var i = (Number(currentPage) > 5 ? Number(currentPage ) - 4 : 1) %>
+            <% if (i !== 1) { %>
+                <li class="disabled"><a>...</a></li>
+            <% } %>
+            <% for (; i <= (Number(currentPage) + 4) && i <= pages; i++) { %>
+                <% if (i == currentPage ) { %>
+                    <li class="active"><a><%= i %></a></li>
+                <% } else { %>
+                    <li><a href="/logs/?currentPage=<%= i %>&pageSize=10"><%= i %></a></li>
+                <% } %>
+                <% if (i == Number(currentPage) + 4 && i < pages) { %>
+                    <li class="disabled"><a>...</a></li>
+                <% } %>
+            <% } %>
+            <% if (currentPage  == pages) { %>
+                <li class="disabled"><a>Last</a></li>
+            <% } else { %>
+                <li><a href="/logs/?currentPage=<%= pages %>&pageSize=10">Last</a></li>
+            <% } %>
+        </ul>
+    <% } %>
+</div>
+
+<script type="text/javascript" src="/js/script.js"></script>
+
+</body>
