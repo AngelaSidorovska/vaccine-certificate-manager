@@ -6,15 +6,15 @@
 </head>
 <body>
 <%- include('../partials/notifications') %>
-    <div class="auth-page">
-        <div class="form">
-            <form class="register-form" action="/register" method="POST">
-                <input type="text" name="username" placeholder="name" required/>
-                <input type="password" name="password" placeholder="password" required/>
-                <button>Register</button>
-                <p class="message">Already registered? <a href="/login">Sign In</a></p>
-            </form>
-        </div>
+<div class="auth-page">
+    <div class="form">
+        <form class="register-form" action="/register" method="POST">
+            <input type="text" name="username" placeholder="корисничко име" required/>
+            <input type="password" name="password" placeholder="лозинка" required/>
+            <button>Регистрирај се</button>
+            <p class="message">Веќе сте регистрирани? <a href="/login">Најави се</a></p>
+        </form>
     </div>
+</div>
 <script type="text/javascript" src="/js/script.js"></script>
 </body>

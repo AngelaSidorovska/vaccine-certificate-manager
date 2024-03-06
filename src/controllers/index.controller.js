@@ -45,7 +45,7 @@ exports.getPatientCertificatePdf = (req, res) => {
         logger.error(
             `INDEX CONTROLLER | Problem retrieving patient certificate file for id ${patientID}. Not found in path "${filePath}".`
         );
-        req.flash('error', `No certificate file found for patient ID: ${patientID}`);
+        req.flash('error', `Не е пронајден сертификат за пацинетот со ID: ${patientID}`);
         res.redirect('/patients?currentPage=1&pageSize=10');
     }
 };
@@ -60,13 +60,14 @@ exports.postRegisterUser = async (req, res) => {
     const user = new User({
         username: req.body.username,
     });
+
     try {
         const resUser = await User.register(user, req.body.password);
         passport.authenticate('local', {
             successRedirect: '/patients',
             failureRedirect: '/register',
         })(req, res, () => {
-            req.flash('success', `Successfully registered! Welcome ${resUser.username}`);
+            req.flash('success', `Регистрацијата беше успешна! Добредојдовте ${resUser.username}`);
             res.redirect('/patients?currentPage=1&pageSize=10');
         });
     } catch (err) {
@@ -100,7 +101,7 @@ exports.postLoginUser = (req, res, next) => {
                 req.flash('error', `Error: ${err}`);
                 res.redirect('/login');
             }
-            req.flash('success', `Logged in successfully, welcome ${user.username}!`);
+            req.flash('success', `Најавата беше успешна, добредојдовте ${user.username}!`);
             res.redirect('/patients/?currentPage=1&pageSize=10');
         });
     })(req, res, next);
@@ -114,7 +115,7 @@ exports.getLogoutUser = (req, res) => {
             req.flash('error', `Error: ${err}`);
             res.redirect('/patients/?currentPage=1&pageSize=10');
         } else {
-            req.flash('success', 'Logged you out!');
+            req.flash('success', 'Успешно сте одјавени!');
             res.redirect('/login');
         }
     });
