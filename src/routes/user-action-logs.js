@@ -3,7 +3,7 @@ const router = express.Router();
 
 const userActionLogsController = require('../controllers/user-action-logs.controller');
 
-const authMiddleware = require('../middleware/middleware');
+const authMiddleware = require('../middleware/authentication.middleware');
 
 router.get('/', authMiddleware, userActionLogsController.getLogs);
 

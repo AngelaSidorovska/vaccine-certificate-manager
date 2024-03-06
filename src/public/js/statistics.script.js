@@ -20,14 +20,14 @@ const vaxStatusPerCityChartData = {
     labels: vaxPerCityColumns.sort(),
     datasets: [
         {
-            label: 'Vaccinated patients',
+            label: 'Вакцинирани',
             data: vaccinatedArray,
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 1,
         },
         {
-            label: 'Unvaccinated patients',
+            label: 'Невакцинирани',
             data: unvaccinatedArray,
             backgroundColor: 'rgba(54, 162, 235, 0.2)',
             borderColor: 'rgba(54, 162, 235, 1)',
@@ -37,10 +37,10 @@ const vaxStatusPerCityChartData = {
 };
 
 const sumVaccinatedUnvaccinatedChartData = {
-    labels: ['Vaccinated', 'Unvaccinated'],
+    labels: ['Вакцинирани', 'Невакцинирани'],
     datasets: [
         {
-            label: 'Sum of vaccinated vs unvaccinated patients',
+            label: 'Состојба на ниво на држава',
             data: [totalVaccinated, totalUnvaccinated],
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             borderColor: 'rgba(255, 99, 132, 1)',

@@ -11,7 +11,7 @@
 <%- include('../partials/notifications') %>
 <%- include('../partials/navbar') %>
 <div class="heading-container">
-    <h1 class="table-heading">Edit patient data</h1>
+    <h1 class="table-heading, header-text">Ажурирање на податоци за пациент</h1>
 </div>
 <div class="input-form">
     <div class="form new-patient-form">
@@ -31,7 +31,7 @@
             <input type="text" name="certificate_code"
                    value='<%= patient.certificate_code && patient.certificate_code !== 'null' ? patient.certificate_code : '' %>'
                    placeholder="01#MK#MINOFHEALTH#QYEZEOMU#2" minlength="28" maxlength="28"/>
-            <button>Edit Patient</button>
+            <button>Ажурирај</button>
         </form>
     </div>
 </div>

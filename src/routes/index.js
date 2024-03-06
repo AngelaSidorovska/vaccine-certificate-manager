@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const authMiddleware = require('../middleware/middleware');
+const authMiddleware = require('../middleware/authentication.middleware');
 
 const indexControllers = require('../controllers/index.controller');
+const redirectIfLoggedIn = require('../middleware/redirect-if-session.middleware');
 
 // GET PATIENT CERTIFICATE CONFIRMATION
 router.get('/Covid19VaccineCertificates/:id', indexControllers.getPatientCertificate);
@@ -12,16 +13,16 @@ router.get('/Covid19VaccineCertificates/:id', indexControllers.getPatientCertifi
 router.get('/Covid19VaccineCertificates/pdf/:id', authMiddleware, indexControllers.getPatientCertificatePdf);
 
 // USER REGISTRATION GET
-router.get('/register', indexControllers.getRegisterUser);
+router.get('/register', redirectIfLoggedIn, indexControllers.getRegisterUser);
 
 // USER REGISTRATION POST
-router.post('/register', indexControllers.postRegisterUser);
+router.post('/register', redirectIfLoggedIn, indexControllers.postRegisterUser);
 
 // USER LOGIN GET
-router.get('/login', indexControllers.getLoginUser);
+router.get('/login', redirectIfLoggedIn, indexControllers.getLoginUser);
 
 // USER LOGIN POST
-router.post('/login', indexControllers.postLoginUser);
+router.post('/login', redirectIfLoggedIn, indexControllers.postLoginUser);
 
 // USER LOGOUT GET
 router.get('/logout', authMiddleware, indexControllers.getLogoutUser);

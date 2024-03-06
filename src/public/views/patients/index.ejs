@@ -14,20 +14,20 @@
 
 <div id="patients-list-content">
     <div class="heading-container">
-        <h1 class="table-heading">All Patients</h1>
+        <h1 class="table-heading, header-text">Листа на пациенти</h1>
     </div>
     <div class="tbl-header">
         <table cellpadding="0" cellspacing="0" border="0">
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Surname</th>
+                <th>Име</th>
+                <th>Презиме</th>
                 <th>DB ID</th>
-                <th>vaccine</th>
-                <th>application_date</th>
-                <th>certificate_code</th>
-                <th>certificate_file</th>
-                <th>Manage</th>
+                <th>Вакцина</th>
+                <th>Датум на издавање</th>
+                <th>Код на сертификат</th>
+                <th>Преземи сертификат</th>
+                <th>Ажурирај</th>
             </tr>
             </thead>
         </table>
@@ -49,9 +49,9 @@
                                href="/Covid19VaccineCertificates/pdf/<%= patient._id %>">PDF</a>
                         </td>
                         <td>
-                            <a class="patient-edit-button" href="/patients/<%= patient._id %>/edit">EDIT</a>
+                            <a class="patient-edit-button" href="/patients/<%= patient._id %>/edit">АЖУРИРАЈ</a>
                             <form action="/patients/<%= patient._id %>?_method=DELETE" method="POST">
-                                <button class="patient-delete-button">Delete</button>
+                                <button class="patient-delete-button">Избриши</button>
                             </form>
                         </td>
                     </tr>
@@ -62,7 +62,7 @@
     </div>
     <div class="pagination-container">
         <div id="pageSize-selector">
-            <label for="pageSize">Page Size:</label>
+            <label for="pageSize">Резултати по страна:</label>
             <select id="pageSize" name="pageSize" onchange="changePageSize(this, <%= currentPage %>)">
                 <option value="5" <%= pageSize === 5 ? 'selected' : '' %>>5</option>
                 <option value="10" <%= pageSize === 10 ? 'selected' : '' %>>10</option>
@@ -73,9 +73,9 @@
         <% if (pages > 0) { %>
             <ul class="pagination text-center">
                 <% if (currentPage == 1) { %>
-                    <li class="disabled"><a>First</a></li>
+                    <li class="disabled"><a>Прва</a></li>
                 <% } else { %>
-                    <li><a href="/patients?currentPage=1&pageSize=<%= pageSize || 10 %>">First</a></li>
+                    <li><a href="/patients?currentPage=1&pageSize=<%= pageSize || 10 %>">Прва</a></li>
                 <% } %>
                 <% var i = (Number(currentPage) > 5 ? Number(currentPage) - 4 : 1) %>
                 <% if (i !== 1) { %>
@@ -92,9 +92,9 @@
                     <% } %>
                 <% } %>
                 <% if (currentPage == pages) { %>
-                    <li class="disabled"><a>Last</a></li>
+                    <li class="disabled"><a>Последна</a></li>
                 <% } else { %>
-                    <li><a href="/patients/?currentPage=<%= pages %>&pageSize=<%= pageSize || 10 %>>">Last</a></li>
+                    <li><a href="/patients/?currentPage=<%= pages %>&pageSize=<%= pageSize || 10 %>>">Последна</a></li>
                 <% } %>
             </ul>
         <% } %>

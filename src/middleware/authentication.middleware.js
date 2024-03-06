@@ -4,7 +4,7 @@ const isLoggedIn = (req, res, next) => {
         return next();
     }
     logger.error(`AUTH MIDDLEWARE | Authentication failed for path ${req?.path}`);
-    req.flash('error', `You don't have permission to do that.`);
+    req.flash('error', `Немате дозвола за тоа.`);
     res.redirect('/login');
 };
 

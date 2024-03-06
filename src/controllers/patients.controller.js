@@ -64,7 +64,7 @@ exports.postNewPatient = async (req, res) => {
 
     try {
         await patient.save();
-        req.flash('success', 'New patient added successfully!');
+        req.flash('success', 'Успешно додаден нов пациент!');
         res.redirect('/patients/?currentPage=1&pageSize=10');
     } catch (err) {
         logger.error(`PATIENTS_CONTROLLER | Problem creating new patient: ${err}`);
@@ -122,7 +122,7 @@ exports.getEditPatient = async (req, res) => {
 
     if (!patient) {
         logger.error(`PATIENTS_CONTROLLER | Problem retrieving patient data for edit.`);
-        req.flash('error', `There was a problem finding that specific data!`);
+        req.flash('error', `Проблем при вчитување на побараните податоци!`);
         res.redirect('/patients/?currentPage=1&pageSize=10');
     }
     res.render('patients/edit', {patient, page: ''});
@@ -161,7 +161,7 @@ exports.patchSinglePatient = async (req, res) => {
 
         await newPatient.save();
 
-        req.flash('success', 'Patient data successfully updated!');
+        req.flash('success', 'Ажурирањето на податоците беше успешно!');
         res.redirect('/patients/?currentPage=1&pageSize=10');
     } catch (err) {
         logger.error(`PATIENTS_CONTROLLER | Problem updating patient data: ${err}`);
@@ -176,10 +176,10 @@ exports.deleteSinglePatient = async (req, res) => {
         const deletedPatient = await Patient.findOneAndDelete({_id: req.params.id});
 
         if (!deletedPatient) {
-            req.flash('error', `There was a problem deleting the patient's data.`);
+            req.flash('error', `Настана проблем при бришењето на одбраните податоци.`);
             res.redirect('/patients/?currentPage=1&pageSize=10');
         }
-        req.flash('success', 'Patient data successfully deleted!');
+        req.flash('success', 'Одбраните податоци успешна беа избришани!');
         res.redirect('/patients/?currentPage=1&pageSize=10');
     } catch (err) {
         logger.error(`PATIENTS_CONTROLLER | Problem updating patient data: ${err}`);
@@ -205,7 +205,10 @@ function validateVaccineDataInput(req, res, action) {
         logger.error(
             `PATIENTS_CONTROLLER | Problem executing ${action} patient: If vaccination data is entered, all values must be present.`
         );
-        req.flash('error', `Error: If vaccination data is entered, all values must be present.`);
+        req.flash(
+            'error',
+            `Грешка: Ако внесувате податоци за вакцинација, сите релевантни податоци мора да бидат внесени.`
+        );
         action === 'edit' ? res.redirect('/patients/?currentPage=1&pageSize=10') : res.redirect(`/patients/${action}`);
         return false;
     }
