@@ -45,8 +45,12 @@
                         <td id="application-date-cell"><%= patient.application_date %></td>
                         <td><%= patient.certificate_code %></td>
                         <td id="certificate-file-cell">
-                            <a class="certificate-file-button"
-                               href="/Covid19VaccineCertificates/pdf/<%= patient._id %>">PDF</a>
+                            <a class="certificate-file-button <%= patient.vaccine === 'null' ? 'disabled' : '' %>"
+                               <% if (patient.vaccine !== 'null') { %>href="/Covid19VaccineCertificates/pdf/<%= patient._id %>"
+                                    <% } %>
+                            >
+                                PDF
+                            </a>
                         </td>
                         <td>
                             <a class="patient-edit-button" href="/patients/<%= patient._id %>/edit">АЖУРИРАЈ</a>
