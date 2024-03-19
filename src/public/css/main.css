@@ -361,8 +361,24 @@ td {
     text-transform: uppercase;
 }
 
+.certificate-file-button.disabled {
+    text-decoration: none;
+    margin-right: 5px;
+    padding: 5px 10px 5px 10px;
+    outline: none;
+    color: #ffffff;
+    border: none;
+    background-color: #9f9f9f;
+    text-transform: uppercase;
+}
+
 .certificate-file-button:hover {
     background-color: #adf887;
+}
+
+.certificate-file-button.disabled:hover {
+    background-color: #9f9f9f;
+    cursor: not-allowed;
 }
 
 .patient-edit-button {
