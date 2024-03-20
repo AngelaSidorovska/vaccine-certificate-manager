@@ -9,3 +9,21 @@
         <li><a href="/logout">Одјави се</a></li>
     </ul>
 </nav>
+
+<script>
+  // Get all li elements
+  const liElements = document.querySelectorAll('.nav-menu li');
+
+  // Loop through each li element
+  liElements.forEach(li => {
+    // Add click event listener to each li element
+    li.addEventListener('click', () => {
+      // Find the nested a tag
+      const aTag = li.querySelector('a');
+      if (aTag) {
+        // Trigger click event on the nested a tag
+        aTag.click();
+      }
+    });
+  });
+</script>
