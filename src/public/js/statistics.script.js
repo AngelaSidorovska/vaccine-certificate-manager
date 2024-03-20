@@ -8,7 +8,16 @@ const unvaccinatedArray = [];
 let totalVaccinated = 0;
 let totalUnvaccinated = 0;
 
-for (const {city, vaccinated, unvaccinated} of parsedVaccinationStatusPerCityData) {
+const cityData = parsedVaccinationStatusPerCityData.map(({city, vaccinated, unvaccinated}) => ({
+    city,
+    vaccinated,
+    unvaccinated,
+}));
+
+// Sort the array alphabetically based on city name
+cityData.sort((a, b) => a.city.localeCompare(b.city));
+
+for (const {city, vaccinated, unvaccinated} of cityData) {
     vaxPerCityColumns.push(city);
     vaccinatedArray.push(vaccinated);
     unvaccinatedArray.push(unvaccinated);
